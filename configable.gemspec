@@ -6,11 +6,11 @@ Gem::Specification.new do |s|
   s.name        = "configable"
   s.version     = Configable::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
+  s.authors     = ["kmasamoto"]
+  s.email       = ["masamoto@104.net"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{add easy config file access to your class}
+  s.description = %q{add easy config file access to your class}
 
   s.rubyforge_project = "configable"
 
