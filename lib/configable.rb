@@ -1,0 +1,3 @@
+module Configable
+  # Your code goes here...
+end
