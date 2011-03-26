@@ -13,11 +13,11 @@ class ConfigUser
   config do
     method :confs
     file   "cu.yaml"
-    default "ConfigUser.test" => "data", "ConfigUser.any" => "value"
+    default "test" => "data", "any" => "value"
   end
 
   def any
-    confs["ConfigUser.any"]
+    confs["any"]
   end
 end
 
@@ -29,11 +29,11 @@ class ConfigUser2
   config do
     method :confs
     file   "cu.yaml"
-    default "ConfigUser2.test" => "data2", "ConfigUser2.any" => "value2"
+    default "test2" => "data2", "any2" => "value2"
   end
 
   def any
-    confs["ConfigUser2.any"]
+    confs["any2"]
   end
 end
 
@@ -54,15 +54,15 @@ end
 
 describe ConfigUser2 do
   context "when new" do
-	  it { subject.confs["ConfigUser2.test"].should == "data2" }
+	  it { subject.confs["test2"].should == "data2" }
 	  it { subject.confs.file.should == "cu.yaml" }
 	  it { subject.any.should == "value2" }
 	end
 
 	context "added class method" do
 	  subject { ConfigUser2 }
-	  it { subject.confs["ConfigUser2.test"].should == "data2" }
+	  it { subject.confs["test2"].should == "data2" }
 	  it { subject.confs.file.should == "cu.yaml" }
-	  it { subject.confs["ConfigUser2.any"].should == "value2" }
+	  it { subject.confs["any2"].should == "value2" }
 	end
 end

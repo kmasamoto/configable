@@ -16,21 +16,30 @@ module Configable
     define_class_method(config.method) { config }
     define_method(config.method) { config }
   end
-  
+
   class ConfigFile
     # 設定データのロード
     def load
+      val=nil
       # ファイルの読み込み
       if File.exist?(@file)
         open(@file, "rb") do |f|
           l = YAML::load(f)
-          @default = @default.merge(l) if l.is_a? Hash
+          val = @default.merge(l) if l.is_a? Hash
         end
       end
       # 書き込む（初期値を変更した場合など。
-      open(@file,"wb") {|f| f.puts @default.ya2yaml(:syck_compatible => true) }
+      open(@file,"wb") {|f| f.puts val.ya2yaml(:syck_compatible => true) }
       # 書き換わったデフォルト値を戻す
-      @default
+      val
+    end
+
+    def load!
+      @values = load
+    end
+    def save!
+      # 書き込む（初期値を変更した場合など。
+      open(@file,"wb") {|f| f.puts @values.ya2yaml(:syck_compatible => true) }
     end
 
     def [](*a)
@@ -45,8 +54,7 @@ module Configable
       return @file if not sym
       @file = sym
     end
-    def default(hash=nil)
-      return @default if not hash
+    def default(hash)
       @default = hash
     end
   end
