@@ -42,9 +42,11 @@ module Configable
       open(@file,"wb") {|f| f.puts @values.ya2yaml(:syck_compatible => true) }
     end
 
-    def [](*a)
+    def values
       @values ||= load
-      @values[*a]
+    end
+    def [](*a)
+      self.values[*a]
     end
     def method(sym=nil)
       return @method if not sym
