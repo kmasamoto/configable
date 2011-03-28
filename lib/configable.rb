@@ -1,7 +1,7 @@
 #!ruby -Ku
 # -*- encoding: UTF-8 -*-
 require 'ya2yaml'
-require 'FileUtils'
+require 'fileutils'
 
 class Module
   def define_class_method(name)
