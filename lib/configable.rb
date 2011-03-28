@@ -1,6 +1,7 @@
 #!ruby -Ku
 # -*- encoding: UTF-8 -*-
 require 'ya2yaml'
+require 'FileUtils'
 
 class Module
   def define_class_method(name)
@@ -29,6 +30,7 @@ module Configable
         end
       end
       # 書き込む（初期値を変更した場合など。
+      FileUtils.mkpath File.dirname(File.expand_path(@file))
       open(@file,"wb") {|f| f.puts val.ya2yaml(:syck_compatible => true) }
       # 書き換わったデフォルト値を戻す
       val
@@ -39,6 +41,7 @@ module Configable
     end
     def save!
       # 書き込む（初期値を変更した場合など。
+      FileUtils.mkpath File.dirname(File.expand_path(@file))
       open(@file,"wb") {|f| f.puts @values.ya2yaml(:syck_compatible => true) }
     end
 
