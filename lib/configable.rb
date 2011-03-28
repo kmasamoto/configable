@@ -21,12 +21,12 @@ module Configable
   class ConfigFile
     # 設定データのロード
     def load
-      val=nil
+      val=@default
       # ファイルの読み込み
       if File.exist?(@file)
         open(@file, "rb") do |f|
           l = YAML::load(f)
-          val = @default.merge(l) if l.is_a? Hash
+          val = val.merge(l) if l.is_a? Hash
         end
       end
       # 書き込む（初期値を変更した場合など。
